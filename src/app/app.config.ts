@@ -12,9 +12,13 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { ZITADEL_SCOPES } from './config/scopes';
 
 const oidcConfig: UserManagerSettings = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   authority: (import.meta as any).env['NG_APP_ZITADEL_DOMAIN'],
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   client_id: (import.meta as any).env['NG_APP_ZITADEL_CLIENT_ID'],
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   redirect_uri: (import.meta as any).env['NG_APP_ZITADEL_CALLBACK_URL'],
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   post_logout_redirect_uri: (import.meta as any).env['NG_APP_ZITADEL_POST_LOGOUT_URL'],
   scope: ZITADEL_SCOPES,
   loadUserInfo: true,

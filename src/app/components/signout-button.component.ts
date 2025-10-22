@@ -20,6 +20,7 @@ export class SignoutButtonComponent {
   async handleSignOut() {
     await this.auth.signoutRedirect({
       post_logout_redirect_uri:
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (import.meta as any).env['NG_APP_ZITADEL_POST_LOGOUT_URL'] || window.location.origin + '/',
     });
   }
