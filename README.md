@@ -1,59 +1,145 @@
-# AngularOidcContext
+# Angular with ZITADEL
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.5.
+[Angular](https://angular.dev/) is a web framework that empowers developers to build fast, reliable applications. Maintained by a dedicated team at Google, Angular provides a broad suite of tools, APIs, and libraries to simplify and streamline your development workflow. Angular gives you a solid platform on which to build fast, reliable applications that scale with both the size of your team and the size of your codebase.
 
-## Development server
+To secure such an application, you need a reliable way to handle user logins. For the Angular ecosystem, [@edgeflare/ngx-oidc](https://github.com/edgeflare/ngx-oidc) is a powerful library for authentication. Think of it as a flexible security guard for your app. This guide demonstrates how to use @edgeflare/ngx-oidc with an Angular application to implement a secure login with ZITADEL.
 
-To start a local development server, run:
+We'll be using the **OpenID Connect (OIDC)** protocol with the **Authorization Code Flow + PKCE**. This is the industry-best practice for security, ensuring that the login process is safe from start to finish. You can learn more in our [guide to OAuth 2.0 recommended flows](https://zitadel.com/docs/guides/integrate/login/oidc/oauth-recommended-flows).
 
-```bash
-ng serve
+This example uses **@edgeflare/ngx-oidc**, a powerful library for Angular authentication. While ZITADEL doesn't offer a specific SDK, @edgeflare/ngx-oidc is highly modular. Under the hood, this example uses the powerful OIDC standard to manage the secure PKCE flow.
+
+Check out our Example Application to see it in action.
+
+## Example Application
+
+The example repository includes a complete Angular application, ready to run, that demonstrates how to integrate ZITADEL for user authentication.
+
+This example application showcases a typical web app authentication pattern: users start on a public landing page, click a login button to authenticate with ZITADEL, and are then redirected to a protected profile page displaying their user information. The app also includes secure logout functionality that clears the session and redirects users back to ZITADEL's logout endpoint. All protected routes are automatically secured using @edgeflare/ngx-oidc's authentication guards, ensuring only authenticated users can access sensitive areas of your application.
+
+### Prerequisites
+
+Before you begin, ensure you have the following:
+
+#### System Requirements
+
+- Node.js (v20 or later is recommended)
+- npm, yarn, or pnpm package manager
+
+#### Account Setup
+
+You'll need a ZITADEL account and application configured. Follow the [ZITADEL documentation on creating applications](https://zitadel.com/docs/guides/integrate/login/oidc/web-app) to set up your account and create a Web application with Authorization Code + PKCE flow.
+
+> **Important:** Configure the following URLs in your ZITADEL application settings:
+>
+> - **Redirect URIs:** Add `http://localhost:3000/auth/callback` (for development)
+> - **Post Logout Redirect URIs:** Add `http://localhost:3000/auth/logout/callback` (for development)
+>
+> These URLs must exactly match what your Angular application uses. For production, add your production URLs.
+
+### Configuration
+
+To run the application, you first need to copy the `.env.example` file to a new file named `.env` and fill in your ZITADEL application credentials.
+
+```dotenv
+# Port number where your Angular development server will listen for incoming HTTP requests.
+# Change this if port 3000 is already in use on your system.
+PORT=3000
+
+# Your ZITADEL instance domain URL. Found in your ZITADEL console under
+# instance settings. Include the full https:// URL.
+# Example: https://my-company-abc123.zitadel.cloud
+NG_APP_ZITADEL_DOMAIN="https://your-zitadel-domain"
+
+# Application Client ID from your ZITADEL application settings. This unique
+# identifier tells ZITADEL which application is making the authentication
+# request.
+NG_APP_ZITADEL_CLIENT_ID="your-client-id"
+
+# OAuth callback URL where ZITADEL redirects after user authentication. This
+# MUST exactly match a Redirect URI configured in your ZITADEL application.
+NG_APP_ZITADEL_CALLBACK_URL="http://localhost:3000/auth/callback"
+
+# URL where users are redirected after logout. This should match a Post Logout
+# Redirect URI configured in your ZITADEL application settings.
+NG_APP_ZITADEL_POST_LOGOUT_URL="http://localhost:3000/auth/logout/callback"
+
+# URL where users are redirected after successful login. This is typically
+# your profile or dashboard page.
+NG_APP_ZITADEL_POST_LOGIN_URL="/profile"
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Installation and Running
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Follow these steps to get the application running:
 
 ```bash
-ng generate component component-name
+# 1. Clone the repository
+git clone git@github.com:zitadel/example-auth-angular.git
+
+cd example-auth-angular
+
+# 2. Install the project dependencies
+npm install
+
+# 3. Start the development server
+npm run dev
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+The application will now be running at `http://localhost:3000`.
 
-```bash
-ng generate --help
+## Key Features
+
+### PKCE Authentication Flow
+
+The application implements the secure Authorization Code Flow with PKCE (Proof Key for Code Exchange), which is the recommended approach for modern web applications.
+
+### Session Management
+
+Built-in session management with @edgeflare/ngx-oidc handles user authentication state across your application, with automatic token refresh and secure session storage.
+
+### Route Protection
+
+Protected routes automatically redirect unauthenticated users to the login flow, ensuring sensitive areas of your application remain secure.
+
+### Logout Flow
+
+Complete logout implementation that properly terminates both the local session and the ZITADEL session, with proper redirect handling.
+
+## TODOs
+
+### 1. Security headers (Angular built-in)
+
+**Partially enabled.** Angular includes some security headers by default, but consider adding custom headers in `angular.json`:
+
+```json
+{
+  "projects": {
+    "your-app": {
+      "architect": {
+        "serve": {
+          "options": {
+            "headers": {
+              "X-Frame-Options": "DENY",
+              "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline';",
+              "Referrer-Policy": "strict-origin-when-cross-origin"
+            }
+          }
+        }
+      }
+    }
+  }
+}
 ```
 
-## Building
+At minimum, configure:
 
-To build the project run:
+- `Content-Security-Policy` (CSP)
+- `X-Frame-Options` / `frame-ancestors`
+- `Referrer-Policy`
+- `Permissions-Policy`
 
-```bash
-ng build
-```
+## Resources
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Angular Documentation:** <https://angular.dev/overview>
+- **@edgeflare/ngx-oidc Documentation:** <https://github.com/edgeflare/ngx-oidc>
+- **ZITADEL Documentation:** <https://zitadel.com/docs>
