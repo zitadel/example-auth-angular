@@ -1,5 +1,5 @@
 module.exports = {
   ignore: [
-    "env.d.ts"
+    "src/env.d.ts"
   ],
 };

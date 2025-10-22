@@ -27,7 +27,6 @@
     "@angular/common": "^20.3.0",
     "@angular/compiler": "^20.3.0",
     "@angular/core": "^20.3.0",
-    "@angular/forms": "^20.3.0",
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
     "@edgeflare/ngx-oidc": "^0.0.1",
@@ -37,9 +36,11 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
+    "@angular-eslint/builder": "^20.4.0",
     "@angular/build": "^20.3.5",
     "@angular/cli": "^20.3.5",
     "@angular/compiler-cli": "^20.3.0",
+    "@eslint/js": "^9.38.0",
     "@ngx-env/builder": "^20.1.1",
     "@tailwindcss/postcss": "^4.1.14",
     "@types/jasmine": "~5.1.0",
