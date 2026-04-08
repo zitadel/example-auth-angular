@@ -28,10 +28,6 @@
     "node": ">=22.0.0"
   },
   "private": true,
-  "overrides": {
-    "undici": "^7.24.0",
-    "picomatch": "4.0.4"
-  },
   "dependencies": {
     "@angular/common": "^21.1.6",
     "@angular/compiler": "^21.1.6",
