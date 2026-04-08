@@ -28,6 +28,9 @@
     "node": ">=22.0.0"
   },
   "private": true,
+  "overrides": {
+    "vite": "^7.3.2"
+  },
   "dependencies": {
     "@angular/common": "^21.1.6",
     "@angular/compiler": "^21.1.6",
