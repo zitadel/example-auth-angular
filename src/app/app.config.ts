@@ -45,7 +45,14 @@ function initializeAuth() {
         await authService.signinCallback();
         // Clean the URL before navigating
         window.history.replaceState({}, document.title, window.location.pathname);
-        await router.navigate(['/profile']);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const postLoginUrl =
+          (import.meta as any).env['NG_APP_ZITADEL_POST_LOGIN_URL'] || '/profile';
+        if (postLoginUrl.startsWith('http')) {
+          window.location.href = postLoginUrl;
+        } else {
+          await router.navigate([postLoginUrl]);
+        }
         return; // Exit early after handling callback
       }
 

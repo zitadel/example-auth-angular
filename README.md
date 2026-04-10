@@ -63,8 +63,8 @@ NG_APP_ZITADEL_CALLBACK_URL="http://localhost:3000/auth/callback"
 # Redirect URI configured in your ZITADEL application settings.
 NG_APP_ZITADEL_POST_LOGOUT_URL="http://localhost:3000/auth/logout/callback"
 
-# URL where users are redirected after successful login. This is typically
-# your profile or dashboard page.
+# Optional. URL where users are redirected after successful login.
+# Defaults to "/profile" if not specified.
 NG_APP_ZITADEL_POST_LOGIN_URL="/profile"
 ```
 
