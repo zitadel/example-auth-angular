@@ -1,5 +1,5 @@
 {
-  "name": "angular-oidc-context",
+  "name": "example-angular-auth",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
