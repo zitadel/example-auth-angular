@@ -9,7 +9,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "lint": "eslint .",
-    "format": "prettier --write src/",
+    "format": "prettier --write .",
     "prepack": "npx tsc -p tsconfig.app.json --noEmit",
     "test": "playwright test"
   },
