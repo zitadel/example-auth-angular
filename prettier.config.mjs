@@ -5,4 +5,12 @@ export default {
   printWidth: 80,
   tabWidth: 2,
   useTabs: false,
+  overrides: [
+    {
+      files: '*.html',
+      options: {
+        parser: 'angular',
+      },
+    },
+  ],
 };
