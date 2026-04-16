@@ -5,7 +5,12 @@ import angular from 'angular-eslint';
 
 export default tseslint.config(
   {
-    ignores: ['**/.angular/**', '**/dist/**', '**/node_modules/**', '**/coverage/**'],
+    ignores: [
+      '**/.angular/**',
+      '**/dist/**',
+      '**/node_modules/**',
+      '**/coverage/**',
+    ],
   },
   {
     files: ['**/*.ts'],
@@ -37,7 +42,10 @@ export default tseslint.config(
   },
   {
     files: ['**/*.html'],
-    extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
+    extends: [
+      ...angular.configs.templateRecommended,
+      ...angular.configs.templateAccessibility,
+    ],
     rules: {},
   },
 );

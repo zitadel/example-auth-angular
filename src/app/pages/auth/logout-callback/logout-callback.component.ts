@@ -7,7 +7,9 @@ import { Router, RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   template: `
-    <main class="flex-1 grid place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+    <main
+      class="flex-1 grid place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8"
+    >
       <div class="text-center">
         <div
           class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100 mb-6"
@@ -27,10 +29,14 @@ import { Router, RouterLink } from '@angular/router';
           </svg>
         </div>
 
-        <h1 class="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl">
+        <h1
+          class="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl"
+        >
           Logout successful
         </h1>
-        <p class="mt-6 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
+        <p
+          class="mt-6 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8"
+        >
           Redirecting in {{ seconds }} seconds...
         </p>
         <div class="mt-10 flex items-center justify-center gap-x-6">

@@ -23,8 +23,9 @@ import { NgOptimizedImage } from '@angular/common';
             <div class="ml-3">
               <p class="text-sm text-gray-600 text-right">
                 <strong class="text-gray-800">Disclaimer:</strong>
-                This is a demonstration application for reference purposes only. Do not use this
-                code in production environments without proper security review and modifications.
+                This is a demonstration application for reference purposes only.
+                Do not use this code in production environments without proper
+                security review and modifications.
               </p>
             </div>
           </div>

@@ -7,8 +7,16 @@ import {
 import { provideRouter, Router } from '@angular/router';
 import { routes } from './app.routes';
 import { UserManagerSettings } from 'oidc-client-ts';
-import { OIDC_CONFIG_TOKEN, AuthService, authzTokenInterceptor } from '@edgeflare/ngx-oidc';
-import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import {
+  OIDC_CONFIG_TOKEN,
+  AuthService,
+  authzTokenInterceptor,
+} from '@edgeflare/ngx-oidc';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
 import { ZITADEL_SCOPES } from './config/scopes';
 
 const oidcConfig: UserManagerSettings = {
@@ -19,7 +27,9 @@ const oidcConfig: UserManagerSettings = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   redirect_uri: (import.meta as any).env['NG_APP_ZITADEL_CALLBACK_URL'],
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  post_logout_redirect_uri: (import.meta as any).env['NG_APP_ZITADEL_POST_LOGOUT_URL'],
+  post_logout_redirect_uri: (import.meta as any).env[
+    'NG_APP_ZITADEL_POST_LOGOUT_URL'
+  ],
   scope: ZITADEL_SCOPES,
   loadUserInfo: true,
   automaticSilentRenew: false,
@@ -27,11 +37,17 @@ const oidcConfig: UserManagerSettings = {
 
 function hasAuthParams(location = window.location): boolean {
   let searchParams = new URLSearchParams(location.search);
-  if ((searchParams.get('code') || searchParams.get('error')) && searchParams.get('state')) {
+  if (
+    (searchParams.get('code') || searchParams.get('error')) &&
+    searchParams.get('state')
+  ) {
     return true;
   }
   searchParams = new URLSearchParams(location.hash.replace('#', '?'));
-  return !!((searchParams.get('code') || searchParams.get('error')) && searchParams.get('state'));
+  return !!(
+    (searchParams.get('code') || searchParams.get('error')) &&
+    searchParams.get('state')
+  );
 }
 
 function initializeAuth() {
@@ -44,10 +60,15 @@ function initializeAuth() {
       if (hasAuthParams()) {
         await authService.signinCallback();
         // Clean the URL before navigating
-        window.history.replaceState({}, document.title, window.location.pathname);
+        window.history.replaceState(
+          {},
+          document.title,
+          window.location.pathname,
+        );
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const postLoginUrl =
-          (import.meta as any).env['NG_APP_ZITADEL_POST_LOGIN_URL'] || '/profile';
+          (import.meta as any).env['NG_APP_ZITADEL_POST_LOGIN_URL'] ||
+          '/profile';
         if (postLoginUrl.startsWith('http')) {
           window.location.href = postLoginUrl;
         } else {
@@ -68,7 +89,10 @@ function initializeAuth() {
     } catch (error) {
       console.error('Auth initialization error:', error);
       // Only navigate to error page if we were actually trying to authenticate
-      if (hasAuthParams() || window.location.pathname === '/auth/logout/callback') {
+      if (
+        hasAuthParams() ||
+        window.location.pathname === '/auth/logout/callback'
+      ) {
         await router.navigate(['/auth/error']);
       }
     }

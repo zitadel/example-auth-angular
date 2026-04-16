@@ -7,7 +7,9 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink],
   template: `
     @if (hasError) {
-      <main class="flex-1 grid place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+      <main
+        class="flex-1 grid place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8"
+      >
         <div class="text-center">
           <div
             class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-red-100 mb-6"
@@ -32,7 +34,9 @@ import { RouterLink } from '@angular/router';
           >
             Something went wrong
           </h1>
-          <p class="mt-6 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
+          <p
+            class="mt-6 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8"
+          >
             An unexpected error occurred. Please try reloading the page.
           </p>
           <div class="mt-10 flex items-center justify-center gap-x-6">
