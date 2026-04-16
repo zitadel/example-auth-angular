@@ -37,7 +37,7 @@ import { Router, RouterLink } from '@angular/router';
         <p
           class="mt-6 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8"
         >
-          Redirecting in {{ seconds }} seconds...
+          Redirecting in {{ seconds }} seconds…
         </p>
         <div class="mt-10 flex items-center justify-center gap-x-6">
           <a
