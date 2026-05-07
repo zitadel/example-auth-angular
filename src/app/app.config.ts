@@ -65,8 +65,8 @@ function initializeAuth() {
           document.title,
           window.location.pathname,
         );
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const postLoginUrl =
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (import.meta as any).env['NG_APP_ZITADEL_POST_LOGIN_URL'] ||
           '/profile';
         if (postLoginUrl.startsWith('http')) {
