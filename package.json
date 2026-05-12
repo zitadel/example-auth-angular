@@ -4,15 +4,17 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "ng": "ng",
-    "dev": "ng serve --port ${PORT:-3000}",
-    "start": "ng serve --port ${PORT:-3000}",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "lint": "eslint .",
+    "dev": "ng serve --port ${PORT:-3000}",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "ng": "ng",
     "prepack": "npx tsc -p tsconfig.app.json --noEmit",
-    "test": "playwright test"
+    "start": "ng serve --port ${PORT:-3000}",
+    "test": "playwright test",
+    "watch": "ng build --watch --configuration development"
   },
   "engines": {
     "node": ">=22.0.0"
