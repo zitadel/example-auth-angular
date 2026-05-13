@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-oidc-context": {
+    "example-angular-auth": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,6 +13,10 @@
         "build": {
           "builder": "@ngx-env/builder:application",
           "options": {
+            "outputPath": {
+              "base": "dist",
+              "browser": ""
+            },
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
@@ -54,10 +58,10 @@
           "options": {},
           "configurations": {
             "production": {
-              "buildTarget": "angular-oidc-context:build:production"
+              "buildTarget": "example-angular-auth:build:production"
             },
             "development": {
-              "buildTarget": "angular-oidc-context:build:development"
+              "buildTarget": "example-angular-auth:build:development"
             }
           },
           "defaultConfiguration": "development"
