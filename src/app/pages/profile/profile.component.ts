@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { JsonPipe } from '@angular/common';
 import { HeaderComponent } from '../../components/header.component';
 import { FooterComponent } from '../../components/footer.component';
-import { AuthService } from '@edgeflare/ngx-oidc';
+import { AuthService } from '@zitadel/angular-auth';
 
 // noinspection HtmlDeprecatedAttribute
 @Component({

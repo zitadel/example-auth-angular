@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { AuthService } from '@edgeflare/ngx-oidc';
+import { AuthService } from '@zitadel/angular-auth';
 
 @Component({
   selector: 'app-signout-button',
