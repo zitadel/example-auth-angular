@@ -11,7 +11,7 @@ import {
   OIDC_CONFIG_TOKEN,
   AuthService,
   authzTokenInterceptor,
-} from '@edgeflare/ngx-oidc';
+} from '@zitadel/angular-auth';
 import {
   provideHttpClient,
   withFetch,

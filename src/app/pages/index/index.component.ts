@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { HeaderComponent } from '../../components/header.component';
 import { FooterComponent } from '../../components/footer.component';
-import { AuthService } from '@edgeflare/ngx-oidc';
+import { AuthService } from '@zitadel/angular-auth';
 
 @Component({
   selector: 'app-index',

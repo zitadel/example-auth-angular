@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard } from '@edgeflare/ngx-oidc';
+import { authGuard } from '@zitadel/angular-auth';
 
 export const routes: Routes = [
   {
