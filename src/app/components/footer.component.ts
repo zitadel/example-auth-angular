@@ -9,14 +9,14 @@ import { NgOptimizedImage } from '@angular/common';
     <footer class="bg-gray-100 border-t border-gray-200">
       <div class="max-w-7xl mx-auto px-6 py-6">
         <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-2">
+          <div class="flex items-center space-x-2 shrink-0">
             <span class="text-sm text-gray-600">Powered by</span>
             <img
               ngSrc="/zitadel-logo.svg"
               alt="Zitadel"
-              width="295"
-              height="81"
-              class="h-12 w-auto"
+              width="300"
+              height="82"
+              class="h-12 w-auto shrink-0"
             />
           </div>
           <div class="flex items-start max-w-2xl">
