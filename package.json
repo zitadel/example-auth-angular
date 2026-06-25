@@ -21,7 +21,6 @@
   },
   "private": true,
   "overrides": {
-    "vite": "^7.3.2",
     "@ngx-env/builder": {
       "@angular/build": "$@angular/build"
     }
